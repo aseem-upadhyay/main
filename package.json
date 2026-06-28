@@ -1,0 +1,21 @@
+{
+  "name": "main",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@astrojs/react": "5",
+    "astro": "5",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  }
+}
