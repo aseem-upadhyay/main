@@ -138,12 +138,7 @@ export default function UnderConstruction() {
         </p>
 
         <ProgressBar />
-
-        <div className="tools-row">
-          {["Design", "Development", "Testing"].map((s) => (
-            <div className="tool-chip" key={s}>{s}</div>
-          ))}
-        </div>
+=
       </main>
 
       <style>{`
