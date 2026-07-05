@@ -124,4 +124,13 @@ const jsonLd = {
   @media (max-width: 720px) {
     .pf-stats { grid-template-columns: 1fr 1fr; }
   }
+
+  @media (max-width: 560px) {
+    .pf-project-head { flex-wrap: wrap; row-gap: 8px; }
+    .pf-project-title { flex-basis: 100%; order: 1; }
+    .pf-meta { order: 2; }
+    .pf-project-links { gap: 16px; }
+    .pf-stats { grid-template-columns: 1fr; }
+    .pf-stat { padding: 20px; }
+  }
 </style>

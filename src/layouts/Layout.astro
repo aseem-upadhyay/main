@@ -62,7 +62,7 @@ const jsonLdList = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 
     <style is:global>
       * { box-sizing: border-box; }
-      html, body { margin: 0; padding: 0; background: #ffffff; }
+      html, body { margin: 0; padding: 0; background: #ffffff; overflow-x: hidden; }
       body { color: #0b0b0b; font-family: 'Instrument Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
       ::selection { background: #0b0b0b; color: #ffffff; }
       a { color: inherit; }
@@ -112,6 +112,10 @@ const jsonLdList = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 
       @media (max-width: 720px) {
         .grid-2 { grid-template-columns: 1fr !important; }
+      }
+
+      @media (max-width: 640px) {
+        .pf-page { padding: 56px 20px 48px; }
       }
     </style>
   </head>

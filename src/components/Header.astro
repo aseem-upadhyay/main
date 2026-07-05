@@ -16,7 +16,11 @@ const current = normalize(currentPath);
       <span class="pf-logo-mark" aria-hidden="true">AU</span>
       {SITE_NAME}
     </a>
-    <nav class="pf-nav" aria-label="Primary">
+    <button class="pf-nav-toggle" type="button" aria-expanded="false" aria-controls="pf-nav" aria-label="Toggle navigation">
+      <span class="pf-nav-toggle-bar"></span>
+      <span class="pf-nav-toggle-bar"></span>
+    </button>
+    <nav class="pf-nav" id="pf-nav" aria-label="Primary">
       {NAV_ITEMS.map((item) => {
         const active = normalize(item.href) === current;
         return (
@@ -33,6 +37,33 @@ const current = normalize(currentPath);
     </nav>
   </div>
 </header>
+
+<script>
+  const header = document.querySelector(".pf-header");
+  const toggle = header?.querySelector(".pf-nav-toggle");
+
+  const closeNav = () => {
+    header?.classList.remove("pf-nav-open");
+    toggle?.setAttribute("aria-expanded", "false");
+  };
+
+  toggle?.addEventListener("click", () => {
+    const isOpen = header?.classList.toggle("pf-nav-open");
+    toggle.setAttribute("aria-expanded", String(Boolean(isOpen)));
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeNav();
+  });
+
+  document.addEventListener("click", (e) => {
+    if (header && !header.contains(e.target as Node)) closeNav();
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 640) closeNav();
+  });
+</script>
 
 <style>
   .pf-header {
@@ -96,5 +127,54 @@ const current = normalize(currentPath);
     background: #0b0b0b;
     transform-origin: left center;
     animation: navBar .4s cubic-bezier(.2,.7,.2,1) both;
+  }
+
+  .pf-nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .pf-nav-toggle-bar {
+    width: 100%;
+    height: 1.5px;
+    background: #0b0b0b;
+    transition: transform .25s ease, opacity .25s ease;
+  }
+  .pf-nav-open .pf-nav-toggle-bar:first-child { transform: translateY(3.25px) rotate(45deg); }
+  .pf-nav-open .pf-nav-toggle-bar:last-child { transform: translateY(-3.25px) rotate(-45deg); }
+
+  @media (max-width: 640px) {
+    .pf-header-inner { padding: 18px 20px; }
+    .pf-logo { font-size: 15px; }
+    .pf-nav-toggle { display: flex; }
+    .pf-nav {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      background: #fff;
+      border-bottom: 1px solid #ececec;
+      max-height: 0;
+      overflow: hidden;
+      visibility: hidden;
+      transition: max-height .3s ease;
+    }
+    .pf-nav-open .pf-nav { max-height: 320px; visibility: visible; }
+    .pf-nav-btn {
+      padding: 16px 20px;
+      border-top: 1px solid #f2f2f2;
+    }
+    .pf-nav-underline { display: none; }
+    .pf-nav-btn[aria-current="page"] { background: #f7f7f7; }
   }
 </style>
