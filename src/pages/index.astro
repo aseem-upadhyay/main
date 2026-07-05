@@ -1,23 +1,155 @@
 ---
-import UnderConstruction from "../components/UnderConstruction";
+import Layout from "../layouts/Layout.astro";
+import { SITE_URL, SITE_NAME, SITE_TITLE, SITE_DESCRIPTION, SKILLS, EXPERIENCE, SOCIALS } from "../data/site";
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: SITE_NAME,
+    url: SITE_URL,
+    jobTitle: "Engineering Manager",
+    description: SITE_DESCRIPTION,
+    sameAs: SOCIALS.filter((s) => s.href.startsWith("http")).map((s) => s.href),
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE_NAME,
+    url: SITE_URL,
+  },
+];
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Under Construction</title>
-    <meta name="description" content="We're working on something great. Check back soon." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <style>
-      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-      body { background: #09090b; }
-    </style>
-  </head>
-  <body>
-    <UnderConstruction client:load />
-  </body>
-</html>
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION} path="/" jsonLd={jsonLd}>
+  <div class="pf-page">
+    <p class="pf-eyebrow pf-fade">About</p>
+    <div class="pf-about-grid">
+      <div class="pf-fade pf-fade-1">
+        <h1 class="pf-about-title">An engineer with an AI first mindset.</h1>
+        <p class="pf-about-lede">
+          I like working in the messy space between ambiguity and execution. It doesn't
+          matter whether the problem is technical, process related, or product related, or
+          whether it's a small fix or something that reshapes how a team works. Figuring
+          out what actually needs to happen, and then doing it, is what I enjoy most. Over
+          the years I've built things from scratch, made calls that held up well in
+          hindsight, gotten teams to actually use AI day to day, and grown engineering
+          teams along the way.
+        </p>
+
+        <details class="pf-details">
+          <summary class="pf-toggle">
+            <span class="label-closed">Read more</span>
+            <span class="label-open">Read less</span>
+            <span class="icon">↓</span>
+          </summary>
+          <div class="pf-expanded">
+            <h2 class="pf-section-label pf-exp-label">Experience</h2>
+            <div class="pf-experience">
+              {EXPERIENCE.map((e) => (
+                <div class="pf-exp-row">
+                  <img class="pf-exp-logo" src={e.logo} alt={`${e.company} logo`} width="32" height="32" loading="lazy" />
+                  <span class="pf-exp-role">{e.position}, {e.company}</span>
+                  <span class="pf-exp-tenure">{e.tenure}</span>
+                </div>
+              ))}
+            </div>
+
+            <h2 class="pf-section-label pf-skills-label">Skills &amp; Tools</h2>
+            <div class="pf-skills grid-2">
+              {SKILLS.map((s) => (
+                <div class="pf-skill">
+                  <h3 class="pf-skill-title">{s.category}</h3>
+                  <p class="pf-skill-desc">{s.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .pf-about-grid {
+    margin-top: 36px;
+  }
+  .pf-about-title {
+    margin: 0;
+    font-family: 'Newsreader', serif;
+    font-weight: 400;
+    font-size: clamp(32px, 4.4vw, 52px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    max-width: 18ch;
+  }
+  .pf-about-lede {
+    margin: 32px 0 0;
+    font-size: 18px;
+    line-height: 1.7;
+    color: #3a3a3a;
+    max-width: 56ch;
+  }
+  .pf-about-more { margin-top: 20px; }
+
+  .pf-details summary { list-style: none; cursor: pointer; }
+  .pf-details summary::-webkit-details-marker { display: none; }
+  .pf-toggle {
+    margin: 26px 0 0;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #0b0b0b;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: opacity .2s;
+  }
+  .pf-toggle:hover { opacity: .6; }
+  .pf-details:not([open]) .label-open { display: none; }
+  .pf-details[open] .label-closed { display: none; }
+  .pf-details[open] .icon { transform: rotate(180deg); }
+
+  .pf-exp-label { margin: 48px 0 0; border-bottom: 1px solid #0b0b0b; padding-bottom: 14px; }
+  .pf-experience { margin-top: 4px; }
+  .pf-exp-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid #ececec;
+  }
+  .pf-exp-row:last-child { border-bottom: none; }
+  .pf-exp-logo {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    object-fit: contain;
+    border-radius: 6px;
+    border: 1px solid #ececec;
+    padding: 4px;
+  }
+  .pf-exp-role { flex: 1; font-family: 'Newsreader', serif; font-size: 18px; letter-spacing: -0.01em; }
+  .pf-exp-tenure {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #8a8a8a;
+    white-space: nowrap;
+  }
+
+  .pf-skills-label { margin: 48px 0 20px; border-bottom: 1px solid #0b0b0b; padding-bottom: 14px; }
+  .pf-skills { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 40px; }
+  .pf-skill-title {
+    margin: 0 0 8px;
+    font-family: 'Newsreader', serif;
+    font-weight: 400;
+    font-size: 19px;
+    letter-spacing: -0.01em;
+  }
+  .pf-skill-desc { margin: 0; font-size: 15px; line-height: 1.6; color: #3a3a3a; }
+
+</style>

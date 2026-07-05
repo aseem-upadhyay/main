@@ -1,0 +1,24 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { SITE_NAME } from "../data/site";
+---
+
+<Layout
+  title={`Page not found — ${SITE_NAME}`}
+  description="The page you're looking for doesn't exist."
+  path="/404"
+>
+  <div class="pf-page pf-404">
+    <p class="pf-eyebrow pf-fade">404</p>
+    <h1 class="pf-page-title pf-fade pf-fade-1">This page doesn't exist.</h1>
+    <p class="pf-404-body pf-fade pf-fade-2">
+      The link might be broken, or the page may have moved. <a href="/">Head back home</a>.
+    </p>
+  </div>
+</Layout>
+
+<style>
+  .pf-404 { min-height: calc(100vh - 200px); }
+  .pf-404-body { margin-top: 24px; font-size: 18px; line-height: 1.7; color: #3a3a3a; }
+  .pf-404-body a { text-decoration: underline; text-underline-offset: 3px; }
+</style>

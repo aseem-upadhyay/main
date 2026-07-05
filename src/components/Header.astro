@@ -1,0 +1,94 @@
+---
+import { NAV_ITEMS, SITE_NAME } from "../data/site";
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+const normalize = (p: string) => (p !== "/" && p.endsWith("/") ? p.slice(0, -1) : p);
+const current = normalize(currentPath);
+---
+
+<header class="pf-header">
+  <div class="pf-header-inner">
+    <a class="pf-logo" href="/">
+      <span class="pf-logo-dot"></span>
+      {SITE_NAME}
+    </a>
+    <nav class="pf-nav" aria-label="Primary">
+      {NAV_ITEMS.map((item) => {
+        const active = normalize(item.href) === current;
+        return (
+          <a
+            class="pf-nav-btn"
+            href={item.href}
+            aria-current={active ? "page" : undefined}
+          >
+            {item.label}
+            {active && <span class="pf-nav-underline"></span>}
+          </a>
+        );
+      })}
+    </nav>
+  </div>
+</header>
+
+<style>
+  .pf-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255,255,255,0.82);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid #ececec;
+  }
+  .pf-header-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 22px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .pf-logo {
+    text-decoration: none;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: #0b0b0b;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .pf-logo-dot {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #0b0b0b;
+  }
+  .pf-nav { display: flex; align-items: center; gap: 6px; }
+  .pf-nav-btn {
+    position: relative;
+    text-decoration: none;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #0b0b0b;
+    padding: 8px 12px;
+  }
+  .pf-nav-underline {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 2px;
+    height: 1.5px;
+    background: #0b0b0b;
+    transform-origin: left center;
+    animation: navBar .4s cubic-bezier(.2,.7,.2,1) both;
+  }
+</style>

@@ -1,0 +1,127 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { SITE_URL, SITE_NAME, OSS_PROJECTS } from "../data/site";
+
+const title = `Projects — ${SITE_NAME}`;
+const description = "Open source projects and packages.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+    { "@type": "ListItem", position: 2, name: "Projects", item: `${SITE_URL}/projects` },
+  ],
+};
+---
+
+<Layout title={title} description={description} path="/projects" jsonLd={jsonLd}>
+  <div class="pf-page">
+    <p class="pf-eyebrow pf-fade">Projects</p>
+    <h1 class="pf-page-title pf-fade pf-fade-1">Open source work.</h1>
+    <div class="pf-projects-list">
+      {OSS_PROJECTS.map((p) => (
+        <article class="pf-project pf-fade">
+          <div class="pf-project-head">
+            <span class="pf-num">{p.num}</span>
+            <h2 class="pf-project-title">{p.title}</h2>
+            <span class="pf-meta">{p.category}</span>
+          </div>
+          <div class="pf-project-body grid-2">
+            <div>
+              <p class="pf-project-desc">{p.subtitle}</p>
+              <div class="pf-project-links">
+                <a href={p.npm_link} target="_blank" rel="noopener" class="pf-npm-link">
+                  View on npm <span>↗</span>
+                </a>
+                <a href={p.github_link} target="_blank" rel="noopener" class="pf-npm-link">
+                  View on GitHub <span>↗</span>
+                </a>
+              </div>
+            </div>
+            <div class="pf-stats">
+              <div class="pf-stat">
+                <span class="pf-stat-value">{p.weekly_downloads}</span>
+                <span class="pf-meta pf-stat-label">Weekly downloads</span>
+              </div>
+              <div class="pf-stat">
+                <span class="pf-stat-value">{p.downloads_till_date}</span>
+                <span class="pf-meta pf-stat-label">Downloads to date</span>
+              </div>
+              <div class="pf-stat">
+                <span class="pf-stat-value">{p.github_stars}</span>
+                <span class="pf-meta pf-stat-label">GitHub stars</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .pf-projects-list { margin-top: 72px; }
+  .pf-project { margin-bottom: 100px; }
+  .pf-project:last-child { margin-bottom: 0; }
+  .pf-project-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    border-bottom: 1px solid #0b0b0b;
+    padding-bottom: 16px;
+  }
+  .pf-num { font-family: 'Space Mono', monospace; font-size: 13px; color: #b0b0b0; }
+  .pf-project-title {
+    margin: 0;
+    font-family: 'Newsreader', serif;
+    font-weight: 400;
+    font-size: clamp(30px, 4.2vw, 48px);
+    letter-spacing: -0.015em;
+    flex: 1;
+  }
+  .pf-project-body {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .pf-project-desc { margin: 0; font-size: 17px; line-height: 1.65; color: #3a3a3a; }
+
+  .pf-project-links { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 24px; }
+  .pf-npm-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #0b0b0b;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-bottom: 1.5px solid #0b0b0b;
+    padding-bottom: 4px;
+    transition: opacity .2s;
+  }
+  .pf-npm-link:hover { opacity: .6; }
+  .pf-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .pf-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 24px;
+    border: 1px solid #ececec;
+    border-radius: 6px;
+  }
+  .pf-stat-value {
+    font-family: 'Newsreader', serif;
+    font-size: clamp(28px, 3vw, 40px);
+    letter-spacing: -0.01em;
+  }
+  .pf-stat-label { margin: 0; }
+
+  @media (max-width: 720px) {
+    .pf-stats { grid-template-columns: 1fr 1fr; }
+  }
+</style>

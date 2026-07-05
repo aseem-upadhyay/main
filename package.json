@@ -5,17 +5,15 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "update-oss-stats": "bun run scripts/update-oss-stats.ts",
+    "add-experience": "bun run scripts/add-experience.ts"
   },
   "devDependencies": {
-    "@types/react": "^19.2.17",
-    "@types/react-dom": "^19.2.3",
     "typescript": "^5"
   },
   "dependencies": {
-    "@astrojs/react": "5",
-    "astro": "5",
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7"
+    "@astrojs/sitemap": "^3.7.3",
+    "astro": "5"
   }
 }

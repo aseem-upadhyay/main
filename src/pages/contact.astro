@@ -1,0 +1,74 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { SITE_URL, SITE_NAME, SOCIALS } from "../data/site";
+
+const title = `Contact — ${SITE_NAME}`;
+const description = `Get in touch by email or find ${SITE_NAME} on social platforms.`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+    { "@type": "ListItem", position: 2, name: "Contact", item: `${SITE_URL}/contact` },
+  ],
+};
+
+---
+
+<Layout title={title} description={description} path="/contact" jsonLd={jsonLd}>
+  <div class="pf-page pf-contact">
+    <p class="pf-eyebrow pf-fade">Contact</p>
+    <h1 class="pf-contact-title pf-fade pf-fade-1">Let's make something quiet and good.</h1>
+    <div class="pf-socials pf-fade pf-fade-2">
+      {SOCIALS.map((s) => (
+        <a href={s.href} target="_blank" rel="noopener" class="pf-social">
+          <span class="pf-social-label">{s.label}</span>
+          <span class="pf-social-handle">{s.handle}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .pf-contact {
+    min-height: calc(100vh - 148px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .pf-contact-title {
+    margin: 20px 0 0;
+    font-family: 'Newsreader', serif;
+    font-weight: 400;
+    font-size: clamp(40px, 6vw, 76px);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    max-width: 13ch;
+  }
+  .pf-socials { margin-top: 44px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .pf-social {
+    text-decoration: none;
+    color: inherit;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #dcdcdc;
+    border-radius: 999px;
+    padding: 11px 18px;
+    transition: background .2s, color .2s, border-color .2s;
+  }
+  .pf-social:hover { background: #0b0b0b; color: #fff; border-color: #0b0b0b; }
+  .pf-social-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #8a8a8a;
+  }
+  .pf-social:hover .pf-social-label { color: inherit; }
+  .pf-social-handle { font-family: 'Newsreader', serif; font-size: 17px; }
+</style>

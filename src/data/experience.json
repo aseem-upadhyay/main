@@ -1,0 +1,38 @@
+[
+  {
+    "position": "Engineering Manager",
+    "company": "Housing.com",
+    "tenure": "July 2024 — Present",
+    "logo": "/logos/housing.png"
+  },
+  {
+    "position": "Lead Software Engineer",
+    "company": "Housing.com",
+    "tenure": "January 2022 — June 2024",
+    "logo": "/logos/housing.png"
+  },
+  {
+    "position": "Senior Software Engineer",
+    "company": "Housing.com",
+    "tenure": "August 2020 — January 2022",
+    "logo": "/logos/housing.png"
+  },
+  {
+    "position": "Frontend Engineer",
+    "company": "CARS24",
+    "tenure": "December 2018 — July 2020",
+    "logo": "/logos/cars24.png"
+  },
+  {
+    "position": "Frontend Engineer",
+    "company": "noon.com",
+    "tenure": "June 2018 — November 2018",
+    "logo": "/logos/noon.png"
+  },
+  {
+    "position": "Software Engineer",
+    "company": "Favcy",
+    "tenure": "July 2017 — June 2018",
+    "logo": "/logos/favcy.png"
+  }
+]
