@@ -13,7 +13,7 @@ const current = normalize(currentPath);
 <header class="pf-header">
   <div class="pf-header-inner">
     <a class="pf-logo" href="/">
-      <span class="pf-logo-dot"></span>
+      <span class="pf-logo-mark" aria-hidden="true">AU</span>
       {SITE_NAME}
     </a>
     <nav class="pf-nav" aria-label="Primary">
@@ -63,12 +63,18 @@ const current = normalize(currentPath);
     align-items: center;
     gap: 10px;
   }
-  .pf-logo-dot {
-    display: inline-block;
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: #0b0b0b;
+  .pf-logo-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    border: 1px solid #0b0b0b;
+    font-family: 'Newsreader', serif;
+    font-size: 11px;
+    letter-spacing: -0.02em;
+    color: #0b0b0b;
   }
   .pf-nav { display: flex; align-items: center; gap: 6px; }
   .pf-nav-btn {

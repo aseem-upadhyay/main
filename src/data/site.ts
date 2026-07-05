@@ -6,7 +6,7 @@ export const SITE_URL = "https://aseemupadhyay.com";
 export const SITE_NAME = "Aseem Upadhyay";
 export const SITE_TITLE = "Aseem Upadhyay — Engineering Manager";
 export const SITE_DESCRIPTION =
-  "Engineering Manager working at the intersection of engineering, product and systems.";
+  "An AI first mindset engineer who dwells in the space between ambiguity and execution.";
 
 export const NAV_ITEMS = [
   { id: "about", label: "About", href: "/" },

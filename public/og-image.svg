@@ -1,9 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <rect width="1200" height="630" fill="#ffffff"/>
-  <circle cx="80" cy="80" r="10" fill="#0b0b0b"/>
-  <text x="106" y="90" font-family="Georgia, 'Times New Roman', serif" font-size="28" fill="#0b0b0b">Aseem Upadhyay</text>
-  <text x="80" y="330" font-family="Georgia, 'Times New Roman', serif" font-size="72" fill="#0b0b0b">Crafting calm,</text>
-  <text x="80" y="410" font-family="Georgia, 'Times New Roman', serif" font-size="72" fill="#0b0b0b">considered digital</text>
-  <text x="80" y="490" font-family="Georgia, 'Times New Roman', serif" font-size="72" fill="#0b0b0b">products.</text>
-  <text x="80" y="560" font-family="Courier New, monospace" font-size="20" letter-spacing="2" fill="#8a8a8a">ENGINEERING MANAGER</text>
+  <text x="600" y="250" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="60" fill="#0b0b0b">Aseem Upadhyay</text>
+  <text x="600" y="320" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="28" fill="#0b0b0b"><tspan x="600" dy="0">An AI first mindset engineer who dwells in the space between</tspan><tspan x="600" dy="40">ambiguity and execution.</tspan></text>
+  <line x1="540" y1="420" x2="660" y2="420" stroke="#0b0b0b" stroke-width="1"/>
+  <text x="600" y="480" text-anchor="middle" font-family="Courier New, monospace" font-size="22" letter-spacing="2" fill="#0b0b0b">aseemupadhyay.com</text>
 </svg>
