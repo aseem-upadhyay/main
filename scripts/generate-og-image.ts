@@ -1,13 +1,17 @@
-// Generates public/og-image.svg from the live site data: a white card with
-// black text — title, subtitle (SITE_DESCRIPTION), a divider, and the domain,
-// all center-aligned.
+// Generates public/og-image.svg and public/og-image.png from the live site
+// data: a white card with black text — title, subtitle (SITE_DESCRIPTION), a
+// divider, and the domain, all center-aligned. The PNG is rasterized from the
+// SVG since most link-preview crawlers (Twitter, Facebook, Slack, ...) don't
+// render SVG og:image tags.
 //
 // Usage:
 //   bun run generate-og-image
 
+import sharp from "sharp";
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "../src/data/site";
 
-const OUTPUT_PATH = new URL("../public/og-image.svg", import.meta.url);
+const SVG_OUTPUT_PATH = new URL("../public/og-image.svg", import.meta.url);
+const PNG_OUTPUT_PATH = new URL("../public/og-image.png", import.meta.url);
 
 const WIDTH = 1200;
 const HEIGHT = 630;
@@ -69,8 +73,11 @@ function buildSvg(): string {
 
 async function main() {
   const svg = buildSvg();
-  await Bun.write(OUTPUT_PATH, svg);
-  console.log(`Wrote ${OUTPUT_PATH.pathname}`);
+  await Bun.write(SVG_OUTPUT_PATH, svg);
+  console.log(`Wrote ${SVG_OUTPUT_PATH.pathname}`);
+
+  await sharp(Buffer.from(svg)).png().toFile(PNG_OUTPUT_PATH.pathname);
+  console.log(`Wrote ${PNG_OUTPUT_PATH.pathname}`);
 }
 
 main().catch((err) => {
